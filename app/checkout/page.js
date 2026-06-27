@@ -65,7 +65,7 @@ export default function CheckoutPage() {
 
   return (
     <div className="shell py-10">
-      <h1 className="text-3xl font-extrabold">Checkout</h1>
+      <h1 className="font-serif text-3xl font-bold">Checkout</h1>
 
       <form onSubmit={handleSubmit} className="mt-8 grid gap-8 lg:grid-cols-[1fr_360px]">
         <div className="space-y-8">

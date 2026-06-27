@@ -28,7 +28,7 @@ export default function AccountPage() {
     <div className="shell py-12">
       <div className="flex flex-wrap items-center justify-between gap-4">
         <div>
-          <h1 className="text-3xl font-extrabold">Hi, {user.name.split(" ")[0]}</h1>
+          <h1 className="font-serif text-3xl font-bold">Hi, {user.name.split(" ")[0]}</h1>
           <p className="mt-1 text-ink/60">{user.email}</p>
         </div>
         <button

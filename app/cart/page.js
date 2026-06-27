@@ -24,7 +24,7 @@ export default function CartPage() {
   return (
     <div className="shell py-10">
       <div className="flex items-center justify-between">
-        <h1 className="text-3xl font-extrabold">Your cart</h1>
+        <h1 className="font-serif text-3xl font-bold">Your cart</h1>
         <button onClick={clear} className="text-sm text-ink/50 hover:text-red-600">Clear cart</button>
       </div>
 

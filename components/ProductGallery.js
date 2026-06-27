@@ -3,11 +3,14 @@
 import { useEffect, useState } from "react";
 
 // Builds the image gallery for a product: the real photo(s) on disk at
-// /public/products/<slug>.jpg, /<slug>-2.jpg, /<slug>-3.jpg, whichever
-// exist. If a product only has one real photo, a second "detail" thumbnail
-// is generated from the same image (zoomed crop) so there's always more
-// than one frame to browse, the same way a real listing shows a wide shot
-// plus a close-up.
+// /public/products/<slug>.<ext>, /<slug>-2.<ext>, /<slug>-3.<ext>, trying
+// jpg/png/jpeg/webp for each so a file saved in any common format is found.
+// If a product only has one real photo, a second "detail" thumbnail is
+// generated from the same image (zoomed crop) so there's always more than
+// one frame to browse, the same way a real listing shows a wide shot plus
+// a close-up.
+
+const EXTENSIONS = ["jpg", "png", "jpeg", "webp"];
 
 function probeImage(src) {
   return new Promise((resolve) => {
@@ -16,6 +19,14 @@ function probeImage(src) {
     img.onerror = () => resolve(false);
     img.src = src;
   });
+}
+
+async function findWorkingSrc(base) {
+  for (const ext of EXTENSIONS) {
+    const src = `${base}.${ext}`;
+    if (await probeImage(src)) return src;
+  }
+  return null;
 }
 
 export default function ProductGallery({ product }) {
@@ -27,9 +38,9 @@ export default function ProductGallery({ product }) {
     let cancelled = false;
 
     async function build() {
-      const candidates = [`${base}.jpg`, `${base}-2.jpg`, `${base}-3.jpg`];
-      const found = await Promise.all(candidates.map(probeImage));
-      const real = candidates.filter((_, i) => found[i]).map((src) => ({ src, zoom: false }));
+      const bases = [base, `${base}-2`, `${base}-3`];
+      const found = await Promise.all(bases.map(findWorkingSrc));
+      const real = found.filter(Boolean).map((src) => ({ src, zoom: false }));
       const next = real.length > 0 ? real : [{ src: `${base}.jpg`, zoom: false }];
       if (next.length < 2) {
         next.push({ src: next[0].src, zoom: true });

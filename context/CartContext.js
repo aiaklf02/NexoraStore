@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, useContext, useEffect, useMemo, useReducer } from "react";
+import { createContext, useContext, useEffect, useMemo, useReducer, useState } from "react";
 
 const CartContext = createContext(null);
 const STORAGE_KEY = "nexora_cart_v1";
@@ -37,6 +37,7 @@ function reducer(state, action) {
 
 export function CartProvider({ children }) {
   const [items, dispatch] = useReducer(reducer, []);
+  const [notice, setNotice] = useState(null);
 
   // Load saved cart on first mount (client only).
   useEffect(() => {
@@ -68,12 +69,17 @@ export function CartProvider({ children }) {
       subtotal,
       shipping,
       total,
-      addItem: (product, qty = 1) => dispatch({ type: "ADD", product, qty }),
+      notice,
+      dismissNotice: () => setNotice(null),
+      addItem: (product, qty = 1) => {
+        dispatch({ type: "ADD", product, qty });
+        setNotice({ id: Date.now(), name: product.name, slug: product.slug });
+      },
       setQty: (slug, qty) => dispatch({ type: "SET_QTY", slug, qty }),
       removeItem: (slug) => dispatch({ type: "REMOVE", slug }),
       clear: () => dispatch({ type: "CLEAR" }),
     };
-  }, [items]);
+  }, [items, notice]);
 
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>;
 }

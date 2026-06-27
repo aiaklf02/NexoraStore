@@ -5,41 +5,44 @@ import PaymentIcons from "./PaymentIcons";
 export default function Footer() {
   const year = new Date().getFullYear();
   return (
-    <footer className="relative mt-24 overflow-hidden bg-brand-deep text-white/80">
+    <footer className="relative mt-24 overflow-hidden bg-gradient-to-br from-brand-deep via-brand-deep to-brand-dark/40 text-white/80">
+      <div className="h-1 w-full bg-gradient-to-r from-brand-light via-brand to-brand-light" />
       <div aria-hidden="true" className="pointer-events-none absolute inset-0 overflow-hidden">
-        <div className="absolute -right-20 -top-24 h-80 w-80 rounded-full bg-brand/25 blur-3xl" />
-        <div className="absolute -left-24 bottom-0 h-72 w-72 rounded-full bg-brand-light/15 blur-3xl" />
+        <div className="absolute -right-20 -top-24 h-96 w-96 rounded-full bg-brand/35 blur-3xl" />
+        <div className="absolute -left-24 bottom-0 h-80 w-80 rounded-full bg-brand-light/25 blur-3xl" />
+        <div className="absolute right-1/3 bottom-10 h-48 w-48 rounded-full bg-brand-light/15 blur-2xl" />
       </div>
 
       <div className="shell relative grid gap-10 py-14 md:grid-cols-4">
         <div className="md:col-span-1">
           <Logo light />
           <p className="mt-4 max-w-xs text-sm leading-relaxed text-white/55">
-            Curated home & lifestyle gadgets, chosen for the way they actually fit into your day.
+            Kitchen tools and appliances, chosen for the way they actually hold up to daily use.
           </p>
         </div>
 
         <div>
           <h4 className="text-sm font-semibold uppercase tracking-wide text-white/40">Shop</h4>
+          <span className="mt-2 block h-0.5 w-8 rounded-full bg-brand-light/70" />
           <ul className="mt-4 space-y-2 text-sm text-white/65">
             <li><Link href="/products" className="hover:text-brand-light">All products</Link></li>
-            <li><Link href="/products?category=kitchen" className="hover:text-brand-light">Kitchen</Link></li>
-            <li><Link href="/products?category=living" className="hover:text-brand-light">Living</Link></li>
-            <li><Link href="/products?category=wellness" className="hover:text-brand-light">Wellness</Link></li>
-          </ul>
-        </div>
-
-        <div>
-          <h4 className="text-sm font-semibold uppercase tracking-wide text-white/40">Company</h4>
-          <ul className="mt-4 space-y-2 text-sm text-white/65">
-            <li><Link href="/about" className="hover:text-brand-light">About us</Link></li>
-            <li><Link href="/contact" className="hover:text-brand-light">Contact</Link></li>
+            <li><Link href="/wishlist" className="hover:text-brand-light">Your wishlist</Link></li>
             <li><Link href="/cart" className="hover:text-brand-light">Your cart</Link></li>
           </ul>
         </div>
 
         <div>
+          <h4 className="text-sm font-semibold uppercase tracking-wide text-white/40">Company</h4>
+          <span className="mt-2 block h-0.5 w-8 rounded-full bg-brand-light/70" />
+          <ul className="mt-4 space-y-2 text-sm text-white/65">
+            <li><Link href="/about" className="hover:text-brand-light">About us</Link></li>
+            <li><Link href="/contact" className="hover:text-brand-light">Contact</Link></li>
+          </ul>
+        </div>
+
+        <div>
           <h4 className="text-sm font-semibold uppercase tracking-wide text-white/40">NEXORA TRADING LLC</h4>
+          <span className="mt-2 block h-0.5 w-8 rounded-full bg-brand-light/70" />
           <address className="mt-4 space-y-1 text-sm not-italic leading-relaxed text-white/65">
             <p>5 Mystic Ln, Unit 101</p>
             <p>Glenmont, NY 12077</p>

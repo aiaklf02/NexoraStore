@@ -20,6 +20,7 @@ module.exports = {
       },
       fontFamily: {
         sans: ["var(--font-sans)", "system-ui", "sans-serif"],
+        serif: ["Georgia", "Cambria", "Times New Roman", "serif"],
       },
       boxShadow: {
         soft: "0 10px 40px -12px rgba(14, 17, 22, 0.18)",

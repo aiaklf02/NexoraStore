@@ -26,9 +26,9 @@ export default function WishlistPage() {
 
   return (
     <div className="shell py-10">
-      <h1 className="text-3xl font-extrabold">Your wishlist</h1>
+      <h1 className="font-serif text-3xl font-bold">Your wishlist</h1>
       <p className="mt-2 text-ink/60">{items.length} saved item{items.length === 1 ? "" : "s"}.</p>
-      <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+      <div className="mt-8 grid gap-x-8 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
         {items.map((p) => (
           <ProductCard key={p.slug} product={p} />
         ))}

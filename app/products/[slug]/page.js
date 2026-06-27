@@ -47,10 +47,7 @@ export default function ProductPage({ params }) {
 
         <div>
           <div className="flex items-start justify-between gap-3">
-            <div>
-              {product.badge && <span className="chip mb-3 !bg-brand/10 !text-brand !ring-brand/20">{product.badge}</span>}
-              <h1 className="text-3xl font-extrabold leading-tight">{product.name}</h1>
-            </div>
+            <h1 className="font-serif text-3xl leading-tight">{product.name}</h1>
             <WishlistButton slug={product.slug} className="h-11 w-11 shrink-0 border border-clay bg-white hover:border-ink/30" />
           </div>
 
@@ -82,8 +79,8 @@ export default function ProductPage({ params }) {
 
       {related.length > 0 && (
         <section className="mt-20">
-          <h2 className="text-2xl font-bold">You might also like</h2>
-          <div className="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          <h2 className="font-serif text-2xl">You might also like</h2>
+          <div className="mt-6 grid gap-x-8 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
             {related.map((p) => (
               <ProductCard key={p.slug} product={p} />
             ))}

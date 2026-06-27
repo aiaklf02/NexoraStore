@@ -10,7 +10,7 @@ export default function ContactPage() {
       <div className="grid gap-12 lg:grid-cols-2">
         <div>
           <span className="chip">Contact</span>
-          <h1 className="mt-4 text-4xl font-extrabold leading-tight">We&apos;re here to help.</h1>
+          <h1 className="font-serif mt-4 text-4xl leading-tight">We&apos;re here to help.</h1>
           <p className="mt-5 text-lg text-ink/70">
             Questions about an order, a product, or a return? Send us a note and a real person will get
             back to you within one business day.

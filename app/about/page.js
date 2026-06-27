@@ -10,7 +10,7 @@ export default function AboutPage() {
     <div className="shell py-12">
       <div className="mx-auto max-w-2xl">
         <span className="chip">Our story</span>
-        <h1 className="mt-4 text-4xl font-extrabold leading-tight">A short list of things worth owning.</h1>
+        <h1 className="font-serif mt-4 text-4xl leading-tight">A short list of things worth owning.</h1>
         <p className="mt-6 text-lg leading-relaxed text-ink/70">
           NEXORA started with a simple frustration: too many gadgets promise a lot and quietly end up
           in a drawer. We wanted to run the opposite kind of shop: a short, honest list of tools we
