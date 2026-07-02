@@ -92,20 +92,25 @@ function hash(str) {
   return h;
 }
 
-// Tried in order for /public/products/<slug>.<ext> — covers whatever format
-// a file was actually saved in, so a stray .png/.jpeg doesn't 404 silently.
-const EXTENSIONS = ["jpg", "png", "jpeg", "webp"];
+const FALLBACK_EXTS = ["jpg", "png", "jpeg", "webp"];
 
 export default function ProductImage({ product, className = "", rounded = "rounded-2xl", zoomOnHover = false }) {
+  // Start at the known extension (from imgExt) so there are zero wasted 404 requests.
+  // If that somehow fails, fall through the remaining extensions as a safety net.
+  const knownExt = product.imgExt;
+  const startExts = knownExt
+    ? [knownExt, ...FALLBACK_EXTS.filter((e) => e !== knownExt)]
+    : FALLBACK_EXTS;
+
   const [extIndex, setExtIndex] = useState(0);
-  const photoFailed = extIndex >= EXTENSIONS.length;
+  const photoFailed = extIndex >= startExts.length;
 
   if (!photoFailed) {
     return (
       <div className={`relative overflow-hidden ${rounded} ${className}`}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src={`/products/${product.slug}.${EXTENSIONS[extIndex]}`}
+          src={`/products/${product.slug}.${startExts[extIndex]}`}
           alt={product.name}
           className={`h-full w-full object-cover ${zoomOnHover ? "transition-transform duration-500 ease-out group-hover:scale-110" : ""}`}
           onError={() => setExtIndex((i) => i + 1)}

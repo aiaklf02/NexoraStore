@@ -10,7 +10,12 @@ import { useEffect, useState } from "react";
 // one frame to browse, the same way a real listing shows a wide shot plus
 // a close-up.
 
-const EXTENSIONS = ["jpg", "png", "jpeg", "webp"];
+const ALL_EXTS = ["jpg", "png", "jpeg", "webp"];
+
+function extOrder(knownExt) {
+  if (!knownExt) return ALL_EXTS;
+  return [knownExt, ...ALL_EXTS.filter((e) => e !== knownExt)];
+}
 
 function probeImage(src) {
   return new Promise((resolve) => {
@@ -21,8 +26,8 @@ function probeImage(src) {
   });
 }
 
-async function findWorkingSrc(base) {
-  for (const ext of EXTENSIONS) {
+async function findWorkingSrc(base, knownExt) {
+  for (const ext of extOrder(knownExt)) {
     const src = `${base}.${ext}`;
     if (await probeImage(src)) return src;
   }
@@ -39,7 +44,7 @@ export default function ProductGallery({ product }) {
 
     async function build() {
       const bases = [base, `${base}-2`, `${base}-3`];
-      const found = await Promise.all(bases.map(findWorkingSrc));
+      const found = await Promise.all(bases.map((b) => findWorkingSrc(b, product.imgExt)));
       const real = found.filter(Boolean).map((src) => ({ src, zoom: false }));
       const next = real.length > 0 ? real : [{ src: `${base}.jpg`, zoom: false }];
       if (next.length < 2) {
