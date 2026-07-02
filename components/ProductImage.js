@@ -60,6 +60,30 @@ const ICONS = {
       <path d="M31 16h3a3 3 0 0 1 0 6h-3" />
     </>
   ),
+  "ceramic-teapot": (
+    <>
+      <path d="M14 20a10 8 0 0 1 20 0v4a4 4 0 0 1-4 4H18a4 4 0 0 1-4-4z" />
+      <path d="M34 22h3a3.5 3.5 0 0 0 0-7h-3" />
+      <path d="M21 20v-5M25 20v-7M29 20v-5" strokeLinecap="round" opacity="0.6" />
+      <rect x="21" y="28" width="6" height="2" rx="1" opacity="0.5" />
+    </>
+  ),
+  "serving-dish-set": (
+    <>
+      <ellipse cx="24" cy="26" rx="13" ry="5" />
+      <path d="M11 26c0-2.8 5.8-8 13-8s13 5.2 13 8" />
+      <ellipse cx="24" cy="26" rx="6" ry="2.2" opacity="0.5" />
+      <path d="M18 15h12" strokeLinecap="round" opacity="0.4" />
+    </>
+  ),
+  "ceramic-mixing-bowl": (
+    <>
+      <path d="M10 20h28a14 10 0 0 1-14 14A14 10 0 0 1 10 20z" />
+      <path d="M10 20a14 4 0 0 1 28 0" />
+      <path d="M28 17l3-5" strokeLinecap="round" opacity="0.6" />
+      <path d="M28 12h5" strokeLinecap="round" opacity="0.5" />
+    </>
+  ),
 };
 
 function hash(str) {
