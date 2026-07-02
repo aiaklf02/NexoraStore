@@ -60,6 +60,54 @@ const ICONS = {
       <path d="M31 16h3a3 3 0 0 1 0 6h-3" />
     </>
   ),
+  "egg-cooker": (
+    <>
+      <ellipse cx="24" cy="26" rx="10" ry="12" />
+      <path d="M14 26c0-5.5 4.5-10 10-10s10 4.5 10 10" opacity="0.5" />
+      <path d="M19 38h10" strokeLinecap="round" opacity="0.5" />
+      <rect x="18" y="38" width="12" height="3" rx="1.5" opacity="0.4" />
+    </>
+  ),
+  "red-rice-cooker": (
+    <>
+      <path d="M12 22a12 6 0 0 1 24 0v9a4 4 0 0 1-4 4H16a4 4 0 0 1-4-4z" />
+      <path d="M12 22a12 3 0 0 1 24 0" opacity="0.5" />
+      <path d="M22 16v-4M26 16v-4" strokeLinecap="round" opacity="0.6" />
+      <circle cx="24" cy="23" r="1.5" opacity="0.6" />
+    </>
+  ),
+  "electric-griddle": (
+    <>
+      <rect x="8" y="20" width="32" height="12" rx="3" />
+      <path d="M13 20v-3M20 20v-3M27 20v-3M34 20v-3" strokeLinecap="round" opacity="0.5" />
+      <path d="M6 26h2M40 26h2" strokeLinecap="round" opacity="0.6" />
+    </>
+  ),
+  "hand-mixer": (
+    <>
+      <rect x="16" y="10" width="16" height="12" rx="3" />
+      <path d="M20 22v10M28 22v10" strokeLinecap="round" />
+      <path d="M22 32h4" strokeLinecap="round" opacity="0.5" />
+      <circle cx="24" cy="14" r="3" opacity="0.5" />
+      <path d="M30 13h4a2 2 0 0 1 0 4h-4" />
+    </>
+  ),
+  "electric-kettle": (
+    <>
+      <path d="M15 15h18v12a5 5 0 0 1-5 5H20a5 5 0 0 1-5-5z" />
+      <path d="M33 19h3a3 3 0 0 1 0 6h-3" />
+      <rect x="18" y="32" width="12" height="3" rx="1.5" opacity="0.5" />
+      <path d="M22 15v-3M26 15v-3" strokeLinecap="round" opacity="0.5" />
+    </>
+  ),
+  "sensart-dish-set": (
+    <>
+      <rect x="10" y="18" width="28" height="14" rx="3" />
+      <path d="M10 22h28" opacity="0.4" />
+      <rect x="15" y="23" width="8" height="6" rx="1.5" opacity="0.5" />
+      <rect x="25" y="23" width="8" height="6" rx="1.5" opacity="0.5" />
+    </>
+  ),
   "ceramic-teapot": (
     <>
       <path d="M14 20a10 8 0 0 1 20 0v4a4 4 0 0 1-4 4H18a4 4 0 0 1-4-4z" />
@@ -107,11 +155,13 @@ export default function ProductImage({ product, className = "", rounded = "round
 
   if (!photoFailed) {
     return (
-      <div className={`relative overflow-hidden ${rounded} ${className}`}>
+      <div className={`relative overflow-hidden bg-clay/30 ${rounded} ${className}`}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src={`/products/${product.slug}.${startExts[extIndex]}`}
           alt={product.name}
+          loading="eager"
+          fetchpriority="high"
           className={`h-full w-full object-cover ${zoomOnHover ? "transition-transform duration-500 ease-out group-hover:scale-110" : ""}`}
           onError={() => setExtIndex((i) => i + 1)}
         />
